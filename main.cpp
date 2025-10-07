@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 
 struct Student {
     std::string name;
@@ -11,7 +12,7 @@ struct Student {
 
 // Функция для сохранения отчёта в файл
 void saveReportToFile(const std::vector<Student>& database) {
-    
+
 }
 
 // Функция для добавления студента в базу данных
