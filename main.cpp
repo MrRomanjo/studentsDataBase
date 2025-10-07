@@ -9,6 +9,11 @@ struct Student {
     double gpa;
 };
 
+// Функция для сохранения отчёта в файл
+void saveReportToFile(const std::vector<Student>& database) {
+    
+}
+
 // Функция для добавления студента в базу данных
 void addStudent(std::vector<Student>& database) {
     Student student;
@@ -55,6 +60,9 @@ int main() {
                 break;
             case 2:
                 displayStudents(database);
+                break;
+            case 3:
+                saveReportToFile(database);
                 break;
             case 0:
                 std::cout << "Выход из программы.\n";
