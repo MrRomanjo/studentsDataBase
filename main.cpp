@@ -13,6 +13,11 @@ struct Student {
 // Функция для сохранения отчёта в файл
 void saveReportToFile(const std::vector<Student>& database) {
     std::ofstream file("students_report.txt");
+    if (!file.is_open()) {
+        std::cout << "Ошибка при открытии файла для записи.\n";
+        return;
+    }
+    file << "ОТЧЁТ О СТУДЕНТАХ\n=================\n\n";
     for (const auto& s : database) {
         file << "Имя: " << s.name << "\n";
         file << "Возраст: " << s.age << "\n";
@@ -20,6 +25,7 @@ void saveReportToFile(const std::vector<Student>& database) {
         file << "Средний балл: " << s.gpa << "\n\n";
     }
     file.close();
+    std::cout << "Отчёт сохранён в students_report.txt\n";
 }
 
 // Функция для добавления студента в базу данных
