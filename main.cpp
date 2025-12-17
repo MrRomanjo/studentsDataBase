@@ -2,7 +2,9 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#ifdef _WIN32
 #include <windows.h>
+#endif
 
 struct Student {
     std::string name;
