@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <windows.h>
 
 struct Student {
     std::string name;
@@ -36,7 +38,36 @@ void displayStudents(const std::vector<Student>& database) {
     }
 }
 
+// Функция для создания отчета и сохранения его в файл
+void generateReport(const std::vector<Student>& database,
+                    const std::string& filename) {
+    std::ofstream file(filename);
+
+    if (!file.is_open()) {
+        std::cout << "Ошибка открытия файла для записи\n";
+        return;
+    }
+
+    file << "ОТЧЕТ ПО СТУДЕНТАМ\n";
+    file << "------------------------\n";
+
+    for (const Student& student : database) {
+        file << "Имя: " << student.name << "\n";
+        file << "Возраст: " << student.age << "\n";
+        file << "Специальность: " << student.major << "\n";
+        file << "Средний балл: " << student.gpa << "\n";
+        file << "------------------------\n";
+    }
+
+    file.close();
+    std::cout << "Отчет сохранен" << filename << "\n";
+}
+
 int main() {
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    #endif
     std::vector<Student> database;
 
     int choice;
@@ -44,8 +75,8 @@ int main() {
         std::cout << "Меню:\n";
         std::cout << "1. Добавить студента\n";
         std::cout << "2. Вывести список студентов\n";
+        std::cout << "3. Сохранить отчет в файл\n";
         std::cout << "0. Выход\n";
-        std::cout << "Выберите действие: ";
         std::cin >> choice;
 
         switch (choice) {
@@ -54,6 +85,9 @@ int main() {
                 break;
             case 2:
                 displayStudents(database);
+                break;
+            case 3:
+                generateReport(database, "students_report.txt");
                 break;
             case 0:
                 std::cout << "Выход из программы.\n";
