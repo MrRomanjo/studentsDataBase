@@ -1,4 +1,11 @@
 all:
-	g++ -std=c++20 main.cpp -o a.out
+	cmake -S . -B build
+	cmake --build build
+
+test:
+	cmake -S . -B build
+	cmake --build build
+	./build/students_database_tests
+
 clean:
-	rm a.out
+	rm -rf build

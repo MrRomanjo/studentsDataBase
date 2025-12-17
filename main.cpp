@@ -62,7 +62,7 @@ void generateReport(const std::vector<Student>& database,
     file.close();
     std::cout << "Отчет сохранен" << filename << "\n";
 }
-
+#ifndef UNIT_TEST
 int main() {
     #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
@@ -99,3 +99,4 @@ int main() {
 
     return 0;
 }
+#endif
